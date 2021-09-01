@@ -6,7 +6,8 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     return console.log('Listening at port 8000');
 });
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use((req, res) => res.sendFile('/index.html', {root: __dirname}));
 app.use(express.json({limit: '1mb'}));
 
 const database = new Datastore('database.db');
