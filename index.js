@@ -25,7 +25,7 @@ app.post('/post', (request, response) => {
 });
 
 app.get('/', function(req,res) {
-    res.sendFile('index.html');
+    res.sendFile('public/index.html');
 });
 
 app.get('/get', (request, response) => {
