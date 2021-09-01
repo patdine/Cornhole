@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Charles Point Cornhole Tournament</title>
+  </style>
+  <link href="https://www.aropupu.fi/bracket/jquery-bracket/dist/jquery.bracket.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="demo"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://www.aropupu.fi/bracket/jquery-bracket/dist/jquery.bracket.min.js"></script>
+  <script>
+
+    // var saveData = {
+    //   teams: 
+    //   [
+    //     ["Team 1", "Team 2"],
+    //     ["Team 3", "Team 4"],
+    //     ["Team 5", "Team 6"],
+    //     ["Team 7", "Team 8"],
+    //     ["Team 9", "Team 10"],
+    //     ["Team 11", "Team 12"],
+    //     ["Team 13", "Team 14"],
+    //     ["Team 15", "Team 16"],
+    //     ["Team 17", "Team 18"],
+    //     ["Team 19", "Team 20"],
+    //     ["Team 21", "Team 22"],
+    //     ["Team 23", "Team 24"],
+    //     ["Team 25", "Team 26"],
+    //     ["Team 27", "Team 28"],
+    //     ["Team 29", "Team 30"],
+    //     ["Team 31", "Team 32"]
+    //   ],
+    //   results: 
+    //   [
+    //     [
+    //       [
+    //         [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]
+    //       ],
+    //       [
+    //         [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null], [null, null]
+    //       ],
+    //       [
+    //         [null, null], [null, null], [null, null], [null, null]
+    //       ],
+    //       [
+    //         [null, null], [null, null]
+    //       ],
+    //       [
+    //         [null, null], [null, null]
+    //       ]
+    //     ]
+    //   ]
+    // };
+
+    function getData() {
+      var bracketData = {};
+      const response = fetch('/get')
+        .then(response => {
+          response.json()
+          .then(data => {
+          bracketData = data.body;
+          console.log(bracketData);
+          var container = $('.demo');
+          container.bracket({
+          init: bracketData,
+          teamWidth: 300,
+          scoreWidth: 42,
+          matchMargin: 30,
+          roundMargin: 58,
+          save: saveFn,
+          userData: '/post'});
+        });
+      });
+    }
+    
+    /* Called whenever bracket is modified
+    *
+    * data:     changed bracket object in format given to init
+    * userData: optional data given when bracket is created.
+    */
+    function saveFn(data, userData) {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('/post', options).then(response => {
+        console.log(response.statusText);
+      });
+    }
+
+    $(document).ready(() => {
+      getData();
+      // console.log(saveData);
+    })
+
+  </script>
+</body>
+
+</html>

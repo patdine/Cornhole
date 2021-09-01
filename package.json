@@ -1,0 +1,25 @@
+{
+  "name": "cornhole",
+  "version": "1.0.0",
+  "description": "Bracket for the Charles Point Cornhole Tournament",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patdine/Cornhole.git"
+  },
+  "author": "Patrick Dinehart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patdine/Cornhole/issues"
+  },
+  "homepage": "https://github.com/patdine/Cornhole#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jquery-bracket": "^0.11.1",
+    "nedb": "^1.8.0",
+    "nodemon": "^2.0.9"
+  }
+}
