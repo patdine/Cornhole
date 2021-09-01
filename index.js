@@ -1,4 +1,4 @@
-const { request, response } = require('express');
+// const { request, response } = require('express');
 const express = require('express');
 const Datastore = require('nedb');
 const app = express();
@@ -24,9 +24,9 @@ app.post('/post', (request, response) => {
     });
 });
 
-app.get('/', function(req,res) {
-    res.sendFile('public/index.html');
-});
+// app.get('/', function(req,res) {
+//     res.sendFile('public/index.html');
+// });
 
 app.get('/get', (request, response) => {
     console.log("I got a get request");

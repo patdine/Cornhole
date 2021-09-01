@@ -6,10 +6,14 @@
   <title>Charles Point Cornhole Tournament</title>
   </style>
   <link href="https://www.aropupu.fi/bracket/jquery-bracket/dist/jquery.bracket.min.css" rel="stylesheet" />
+  <link href="index.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="demo"></div>
+  <div class="admin">
+    <input type="text" id="password"/>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://www.aropupu.fi/bracket/jquery-bracket/dist/jquery.bracket.min.js"></script>
   <script>
@@ -83,16 +87,21 @@
     * userData: optional data given when bracket is created.
     */
     function saveFn(data, userData) {
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      };
-      fetch('/post', options).then(response => {
-        console.log(response.statusText);
-      });
+      if($("#password").val() === "password") {
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        fetch('/post', options).then(response => {
+          console.log(response.statusText);
+        });
+      }
+      else {
+        return;
+      }
     }
 
     $(document).ready(() => {
