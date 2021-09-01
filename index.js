@@ -2,8 +2,9 @@ const { request, response } = require('express');
 const express = require('express');
 const Datastore = require('nedb');
 const app = express();
-app.listen(8000, () => {
-    return console.log('Listening at port 8000');
+const port = process.env.port || 8000;
+app.listen(port, () => {
+    console.log('Listening at port ' + port);
 });
 app.use(express.static('public'));
 // app.use((req, res) => res.sendFile('/index.html', {root: __dirname}));
