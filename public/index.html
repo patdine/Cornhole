@@ -87,7 +87,7 @@
     * userData: optional data given when bracket is created.
     */
     function saveFn(data, userData) {
-      if($("#password").val() === "password") {
+      if( $("#password") != null && $("#password").val() != null && $("#password").val() === "password") {
         const options = {
           method: 'POST',
           headers: {
